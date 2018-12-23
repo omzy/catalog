@@ -21,18 +21,4 @@ class Product extends Model
      * @var array
      */
     protected $hidden = [];
-
-    /**
-     * Set model validation rules.
-     *
-     * @return array
-     */
-    public static function rules()
-    {
-        return [
-            'name' => 'required|string|between:3,50',
-            'price' => 'required|numeric|between:0,10000',
-            'description' => 'string|between:3,500',
-        ];
-    }
 }

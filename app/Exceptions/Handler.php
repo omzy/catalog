@@ -4,6 +4,12 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Illuminate\Http\Response;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +52,34 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($request->expectsJson()) {
+            if ($exception instanceof NotFoundHttpException) {
+                $status = Response::HTTP_NOT_FOUND;
+                $message = 'Route not found';
+            }
+            elseif ($exception instanceof ModelNotFoundException) {
+                $status = Response::HTTP_NOT_FOUND;
+                $message = 'Resource not found';
+            }
+            elseif ($exception instanceof MethodNotAllowedHttpException) {
+                $status = Response::HTTP_METHOD_NOT_ALLOWED;
+                $message = 'Method not allowed';
+            }
+            elseif ($exception instanceof AuthorizationException) {
+                $status = Response::HTTP_FORBIDDEN;
+                $message = 'Authorisation required';
+            }
+            elseif ($exception instanceof ValidationException) {
+                return $this->invalidJson($request, $exception);
+            }
+            else {
+                $status = Response::HTTP_INTERNAL_SERVER_ERROR;
+                $message = $exception->getMessage();
+            }
+
+            return response()->json(['message' => $message], $status);
+        }
+
         return parent::render($request, $exception);
     }
 }
