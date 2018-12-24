@@ -5,7 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
@@ -65,9 +65,9 @@ class Handler extends ExceptionHandler
                 $status = Response::HTTP_METHOD_NOT_ALLOWED;
                 $message = 'Method not allowed';
             }
-            elseif ($exception instanceof AuthorizationException) {
+            elseif ($exception instanceof AuthenticationException) {
                 $status = Response::HTTP_FORBIDDEN;
-                $message = 'Authorisation required';
+                $message = 'Authentication required';
             }
             elseif ($exception instanceof ValidationException) {
                 return $this->invalidJson($request, $exception);

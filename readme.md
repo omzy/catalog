@@ -17,12 +17,16 @@ This is a simple Rest API built in [Laravel](https://laravel.com) PHP framework.
 
 ## Usage Instructions
 
-Simply make a request to an endpoint listed below, using a request type of `application/json`. Appropriate feedback / validation is provided in case of errors, etc.
+Simply make a request to an endpoint listed below, using an "Accept" header with the value `application/json`.
+
+The endpoints marked with an * asterisk below are authenticated endpoints. In order to call these endponts, you will need to send an authorisation token along with your request.
 
 ## Available Endpoints
 
 - GET `/products` (get all products)
 - GET `/products/{id}` (get a single product)
-- POST `/products` (create a product)
-- PUT `/products/{id}` (edit a product)
-- DELETE `/products/{id}` (delete a product)
+- POST `/products` (create a product)*
+- PUT `/products/{id}` (edit a product)*
+- DELETE `/products/{id}` (delete a product)*
+
+Appropriate feedback / validation is provided in case of errors, etc.
