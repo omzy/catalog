@@ -1,6 +1,6 @@
-# Simple Rest API (Products Catalog)
+# Simple REST API (Products Catalog)
 
-This is a simple Rest API built in [Laravel](https://laravel.com) PHP framework.
+This is a very basic REST API built in [Laravel](https://laravel.com) PHP framework. It uses JWT auth for authenticated requests.
 
 ## Requirements
 
@@ -17,16 +17,18 @@ This is a simple Rest API built in [Laravel](https://laravel.com) PHP framework.
 
 ## Usage Instructions
 
-Simply make a request to an endpoint listed below, using an "Accept" header with the value `application/json`.
+Simply make a request to an endpoint listed below, using an `Accept` header with the value `application/json`.
 
-The endpoints marked with an * asterisk below are authenticated endpoints. In order to call these endponts, you will need to send an authorisation token along with your request.
+The endpoints marked with an asterisk (*) below are authenticated endpoints. In order to call these endponts, you will need to send an authorization header along with your request.
+
+To get your token, simply login at `/api/login` (or create an account at `/api/register`). Then include this as a "bearer token" in your request.
 
 ## Available Endpoints
 
-- GET `/products` (get all products)
-- GET `/products/{id}` (get a single product)
-- POST `/products` (create a product)*
-- PUT `/products/{id}` (edit a product)*
-- DELETE `/products/{id}` (delete a product)*
+- GET `/api/products` (get all products)
+- GET `/api/products/{id}` (get a single product)
+- POST `/api/products` (create a product)*
+- PUT `/api/products/{id}` (edit a product)*
+- DELETE `/api/products/{id}` (delete a product)*
 
 Appropriate feedback / validation is provided in case of errors, etc.
