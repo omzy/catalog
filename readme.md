@@ -21,7 +21,7 @@ Simply make a request to an endpoint listed below, using an `Accept` header with
 
 The endpoints marked with an asterisk (*) below are authenticated endpoints. In order to call these endponts, you will need to send an authorization header along with your request.
 
-To get your token, simply login at `/api/login` (or create an account at `/api/register`). Then include this as a "bearer token" in your request.
+To get your token, simply login at `/api/user/login` (or create an account at `/api/user/register`). Then include the returned access token as a "bearer token" in your request.
 
 ## Available Endpoints
 
