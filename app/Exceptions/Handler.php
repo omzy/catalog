@@ -66,14 +66,14 @@ class Handler extends ExceptionHandler
                 $message = 'Method not allowed';
             }
             elseif ($exception instanceof AuthenticationException) {
-                $status = Response::HTTP_FORBIDDEN;
+                $status = Response::HTTP_UNAUTHORIZED;
                 $message = 'Authentication required';
             }
             elseif ($exception instanceof ValidationException) {
                 return $this->invalidJson($request, $exception);
             }
             else {
-                $status = Response::HTTP_INTERNAL_SERVER_ERROR;
+                $status = $exception->getStatusCode();
                 $message = $exception->getMessage();
             }
 
