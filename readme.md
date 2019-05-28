@@ -17,7 +17,7 @@ This is a very basic REST API built in [Laravel](https://laravel.com) PHP framew
 
 ## Usage Instructions
 
-Simply make a request to an endpoint listed below (you may need to include an `Accept` header with the value `application/json` with your request).
+Simply make a request to an endpoint listed below (you should include an `Accept` header with the value `application/json` with your request).
 
 In order to call these endponts, you will need to send an authorization header along with your request.
 
